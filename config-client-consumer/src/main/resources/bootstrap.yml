@@ -1,0 +1,23 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://user1:password1@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+spring:
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server-to-eureka
+      label: main
+      # 配置固定一个git仓库，默认配置名为{spring.cloud.config.name}-{spring.cloud.config.profile}。
+      # 不配置name，默认使用spring.application.name，如果这个也没配置，默认application，即配置名为
+      # application-{spring.cloud.config.profile}
+      #name: application
+      profile: dev
+      username: user2
+      password: password2
+  application:
+    name: config-client-consumer

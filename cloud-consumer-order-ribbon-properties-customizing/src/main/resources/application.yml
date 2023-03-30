@@ -1,0 +1,18 @@
+server:
+  port: 7002
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://user1:password1@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+spring:
+  application:
+    name: cloud-consumer-order
+#使用配置文件的方式配置RibbonClient策略
+cloud-provider-user2:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule

@@ -1,0 +1,48 @@
+spring:
+  profiles:
+    active: peer3
+---
+spring:
+  profiles: peer1
+  application:
+    name: peer111
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: peer1
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://peer2:8762/eureka,http://peer3:8763/eureka
+---
+spring:
+  profiles: peer2
+  application:
+    name: peer222
+server:
+  port: 8762
+eureka:
+  instance:
+    hostname: peer2
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://peer1:8761/eureka,http://peer3:8763/eureka
+---
+spring:
+  profiles: peer3
+  application:
+    name: peer333
+server:
+  port: 8763
+eureka:
+  instance:
+    hostname: peer3
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://peer1:8761/eureka,http://peer2:8762/eureka

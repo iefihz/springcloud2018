@@ -1,0 +1,31 @@
+server:
+  port: 7000
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/springcloud
+    username: root
+    password: 123
+    driver-class-name: com.mysql.jdbc.Driver
+    type: org.apache.commons.dbcp2.BasicDataSource
+    dbcp2:
+      initial-size: 1
+      max-total: 3
+      validation-query: select 1
+      validation-query-timeout: 10
+      time-between-eviction-runs-millis: 300000
+      min-evictable-idle-time-millis: 1800000
+      test-while-idle: true
+  application:
+    name: cloud-provider-user
+eureka:
+  client:
+    service-url:
+      defaultZone: http://user1:password1@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}

@@ -1,0 +1,2 @@
+zuul的fallback和hystrix的fallback的区别（粗粒度不同）：
+zuul的fallback回退的是整个微服务，hystrix的fallback回退的是FeignClient具体的某个方法。

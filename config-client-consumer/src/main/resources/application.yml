@@ -1,0 +1,7 @@
+server:
+  port: 9101
+# 设置eureka.client.healthcheck.enabled=true，必须在application中不能在bootstrap，否则会导致，UNKNOWN服务状态
+eureka:
+  client:
+    healthcheck:
+      enabled: true
